@@ -585,7 +585,7 @@
                 <div class="hero-label">Data Scientist & AI Engineer</div>
                 <h1 class="hero-title">Husam<br>Mekhallalati</h1>
                 <p class="hero-subtitle">Transforming complex data into actionable insights through advanced analytics, machine learning, and intelligent systems.</p>
-                
+
                 <div class="hero-stats">
                     <div class="stat">
                         <span class="stat-number">3+</span>
@@ -620,9 +620,9 @@
             <div class="about-grid fade-in-section">
                 <div class="about-text">
                     <p>I'm an <span class="highlight">Irish/British Data Scientist</span> with a Master's degree in Applied Data Science from Utrecht University, specializing in building end-to-end analytics pipelines and AI-powered applications.</p>
-                    
+
                     <p>My expertise spans <span class="highlight">NLP, transformer architectures, RAG systems, and deep learning</span>, with hands-on experience in logistics analytics, remote sensing, geospatial intelligence, and web scraping at scale.</p>
-                    
+
                     <p>I'm passionate about leveraging data to solve real-world problems, from sentiment analysis of conflict narratives to secure educational chatbots and comprehensive project management platforms.</p>
                 </div>
 
@@ -891,9 +891,9 @@
                 </p>
 
                 <div class="contact-links">
-                    <a href="/cdn-cgi/l/email-protection#593b312c2a38346b6b6969193e34383035773a3634" class="contact-link">
+                    <a href="mailto:husam2200@gmail.com" class="contact-link">
                         <span>📧</span>
-                        <span class="__cf_email__" data-cfemail="c5a7adb0b6a4a8f7f7f5f585a2a8a4aca9eba6aaa8">[email&#160;protected]</span>
+                        husam2200@gmail.com
                     </a>
                     <a href="tel:+31639015076" class="contact-link">
                         <span>📱</span>
@@ -916,7 +916,7 @@
         </div>
     </footer>
 
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    <script>
         // Intersection Observer for scroll animations
         const observerOptions = {
             threshold: 0.1,
@@ -940,4 +940,14 @@
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
-           
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
