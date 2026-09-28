@@ -3,931 +3,402 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Husam Mekhallalati - Data Science & AI</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=IBM+Plex+Mono:wght@300;400;500&family=Manrope:wght@300;400;600&display=swap" rel="stylesheet">
+    <title>Husam Mekhallalati</title>
+    <meta name="description" content="Husam Mekhallalati is an AI engineer in Riyadh who builds LLM systems for Arabic and English documents.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #0a1128;
-            --accent: #ff6b35;
-            --accent-soft: #ffa27f;
-            --text: #1a1a2e;
-            --text-light: #4a5568;
-            --bg: #fdfbf7;
-            --card-bg: #ffffff;
-            --border: #e8e4dc;
+            --bg: #0f172a;
+            --card-hover: rgba(30, 41, 59, 0.5);
+            --text: #94a3b8;
+            --text-strong: #e2e8f0;
+            --text-muted: #64748b;
+            --accent: #5eead4;
+            --accent-bg: rgba(45, 212, 191, 0.1);
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; }
 
         body {
-            font-family: 'Manrope', sans-serif;
+            font-family: 'Inter', system-ui, sans-serif;
             background: var(--bg);
             color: var(--text);
-            line-height: 1.7;
-            overflow-x: hidden;
+            line-height: 1.65;
+            -webkit-font-smoothing: antialiased;
         }
 
-        .grain-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+        a { color: inherit; text-decoration: none; }
+
+        ::selection { background: var(--accent); color: var(--bg); }
+
+        .spotlight {
             pointer-events: none;
-            opacity: 0.03;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='3.5' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-            z-index: 9999;
+            position: fixed;
+            inset: 0;
+            z-index: 0;
         }
 
-        .container {
-            max-width: 1200px;
+        .layout {
+            position: relative;
+            z-index: 1;
+            max-width: 1280px;
             margin: 0 auto;
-            padding: 0 2rem;
+            padding: 0 1.5rem;
         }
 
-        /* Hero Section */
-        .hero {
-            min-height: 100vh;
+        /* Left column */
+        header { padding: 3rem 0 1rem; }
+
+        h1 {
+            font-size: 2.25rem;
+            font-weight: 700;
+            letter-spacing: -0.025em;
+            line-height: 1.2;
+            color: var(--text-strong);
+        }
+
+        .role {
+            margin-top: 0.75rem;
+            font-size: 1.125rem;
+            font-weight: 500;
+            color: var(--text-strong);
+        }
+
+        .tagline { margin-top: 1rem; max-width: 20rem; }
+
+        nav { display: none; }
+
+        nav ul { list-style: none; margin-top: 4rem; }
+
+        nav a {
             display: flex;
             align-items: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -20%;
-            width: 80%;
-            height: 150%;
-            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-soft) 100%);
-            opacity: 0.08;
-            border-radius: 50%;
-            filter: blur(80px);
-            animation: float 20s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translate(0, 0) scale(1); }
-            50% { transform: translate(-30px, 30px) scale(1.1); }
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 2;
-            animation: fadeInUp 1s ease-out;
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .hero-label {
-            font-family: 'IBM Plex Mono', monospace;
+            padding: 0.75rem 0;
             font-size: 0.75rem;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            color: var(--accent);
-            margin-bottom: 1.5rem;
-            font-weight: 500;
-            animation: fadeInUp 1s ease-out 0.2s backwards;
-        }
-
-        .hero-title {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(3rem, 8vw, 6rem);
-            font-weight: 900;
-            line-height: 1.1;
-            margin-bottom: 1.5rem;
-            color: var(--primary);
-            animation: fadeInUp 1s ease-out 0.3s backwards;
-        }
-
-        .hero-subtitle {
-            font-size: clamp(1.25rem, 3vw, 1.75rem);
-            color: var(--text-light);
-            margin-bottom: 2.5rem;
-            font-weight: 300;
-            max-width: 700px;
-            animation: fadeInUp 1s ease-out 0.4s backwards;
-        }
-
-        .hero-stats {
-            display: flex;
-            gap: 4rem;
-            margin-top: 3rem;
-            animation: fadeInUp 1s ease-out 0.5s backwards;
-        }
-
-        .stat {
-            text-align: left;
-        }
-
-        .stat-number {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.5rem;
             font-weight: 700;
-            color: var(--accent);
-            display: block;
-            margin-bottom: 0.25rem;
-        }
-
-        .stat-label {
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 0.8rem;
-            color: var(--text-light);
             text-transform: uppercase;
             letter-spacing: 0.1em;
+            color: var(--text-muted);
         }
 
-        .cta-buttons {
-            display: flex;
-            gap: 1rem;
-            margin-top: 3rem;
-            animation: fadeInUp 1s ease-out 0.6s backwards;
+        nav a::before {
+            content: '';
+            width: 2rem;
+            height: 1px;
+            margin-right: 1rem;
+            background: var(--text-muted);
+            transition: width 0.15s, background 0.15s;
         }
 
-        .btn {
-            padding: 1rem 2rem;
-            border-radius: 2px;
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            display: inline-block;
-            font-weight: 500;
+        nav a:hover, nav a.active { color: var(--text-strong); }
+
+        nav a:hover::before, nav a.active::before {
+            width: 4rem;
+            background: var(--text-strong);
         }
 
-        .btn-primary {
-            background: var(--accent);
-            color: white;
-            border: 2px solid var(--accent);
-        }
-
-        .btn-primary:hover {
-            background: transparent;
-            color: var(--accent);
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(255, 107, 53, 0.2);
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: var(--primary);
-            border: 2px solid var(--primary);
-        }
-
-        .btn-secondary:hover {
-            background: var(--primary);
-            color: white;
-            transform: translateY(-2px);
-        }
-
-        /* Section Styles */
-        section {
-            padding: 8rem 0;
-            position: relative;
-        }
-
-        .section-header {
-            margin-bottom: 5rem;
-            opacity: 0;
-            animation: fadeInUp 0.8s ease-out forwards;
-        }
-
-        .section-header.visible {
-            animation: fadeInUp 0.8s ease-out forwards;
-        }
-
-        .section-label {
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 0.75rem;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            color: var(--accent);
-            margin-bottom: 1rem;
-        }
-
-        .section-title {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            font-weight: 700;
-            color: var(--primary);
-            line-height: 1.2;
-        }
-
-        /* About Section */
-        .about-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: start;
-        }
-
-        .about-text {
-            font-size: 1.125rem;
-            color: var(--text);
-            line-height: 1.8;
-        }
-
-        .about-text p {
-            margin-bottom: 1.5rem;
-        }
-
-        .highlight {
-            color: var(--accent);
-            font-weight: 600;
-        }
-
-        .skills-grid {
-            display: grid;
-            gap: 2rem;
-        }
-
-        .skill-category {
-            background: var(--card-bg);
-            padding: 2rem;
-            border: 1px solid var(--border);
-            transition: all 0.3s ease;
-        }
-
-        .skill-category:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
-            border-color: var(--accent);
-        }
-
-        .skill-category h3 {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: var(--primary);
-        }
-
-        .skill-tags {
+        .socials {
             display: flex;
             flex-wrap: wrap;
-            gap: 0.75rem;
-            margin-top: 1rem;
+            gap: 0.5rem 1.25rem;
+            margin-top: 2rem;
+            list-style: none;
+            font-size: 0.875rem;
         }
 
-        .skill-tag {
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 0.75rem;
-            padding: 0.5rem 1rem;
-            background: var(--bg);
-            color: var(--text);
-            border: 1px solid var(--border);
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            transition: all 0.3s ease;
-        }
+        .socials a:hover { color: var(--text-strong); }
 
-        .skill-tag:hover {
-            background: var(--accent);
-            color: white;
-            border-color: var(--accent);
-        }
+        /* Right column */
+        main { padding: 3rem 0; }
 
-        /* Projects Section */
-        .projects-grid {
-            display: grid;
-            gap: 3rem;
-        }
+        section { margin-bottom: 6rem; scroll-margin-top: 6rem; }
 
-        .project-card {
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            overflow: hidden;
-            transition: all 0.4s ease;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            min-height: 400px;
-        }
-
-        .project-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.1);
-            border-color: var(--accent);
-        }
-
-        .project-image {
-            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-soft) 100%);
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 3rem;
-        }
-
-        .project-icon {
-            font-size: 5rem;
-            color: white;
-            opacity: 0.9;
-        }
-
-        .project-content {
-            padding: 3rem;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        .project-meta {
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 0.7rem;
+        .section-title {
+            position: sticky;
+            top: 0;
+            z-index: 2;
+            margin: 0 -1.5rem 1rem;
+            padding: 1.25rem 1.5rem;
+            background: rgba(15, 23, 42, 0.75);
+            backdrop-filter: blur(8px);
+            font-size: 0.875rem;
+            font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 0.1em;
-            color: var(--accent);
-            margin-bottom: 1rem;
+            color: var(--text-strong);
         }
 
-        .project-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--primary);
-            margin-bottom: 1rem;
+        .about p { margin-bottom: 1rem; }
+
+        .about strong { color: var(--text-strong); font-weight: 500; }
+
+        .items { list-style: none; }
+
+        .item {
+            display: grid;
+            gap: 0.5rem;
+            margin: 0 -1rem 3rem;
+            padding: 1rem;
+            border-radius: 0.375rem;
+            transition: background 0.15s;
         }
 
-        .project-description {
-            color: var(--text-light);
-            line-height: 1.7;
-            margin-bottom: 1.5rem;
+        .item:hover { background: var(--card-hover); }
+
+        .item-date {
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-muted);
+            padding-top: 0.25rem;
         }
 
-        .project-tech {
+        .item h3 {
+            font-size: 1rem;
+            font-weight: 500;
+            line-height: 1.4;
+            color: var(--text-strong);
+        }
+
+        .item:hover h3 { color: var(--accent); }
+
+        .item h3 .org { color: var(--text); }
+
+        .item p { margin-top: 0.5rem; font-size: 0.875rem; }
+
+        .tags {
             display: flex;
             flex-wrap: wrap;
             gap: 0.5rem;
-            margin-top: auto;
+            margin-top: 0.75rem;
+            list-style: none;
         }
 
-        .tech-badge {
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 0.7rem;
-            padding: 0.4rem 0.8rem;
-            background: var(--bg);
-            color: var(--text);
-            border: 1px solid var(--border);
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-
-        /* Experience Section */
-        .timeline {
-            position: relative;
-            padding-left: 3rem;
-        }
-
-        .timeline::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            bottom: 0;
-            width: 2px;
-            background: var(--border);
-        }
-
-        .timeline-item {
-            position: relative;
-            margin-bottom: 4rem;
-            padding-bottom: 4rem;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .timeline-item:last-child {
-            border-bottom: none;
-            margin-bottom: 0;
-            padding-bottom: 0;
-        }
-
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: -3.5rem;
-            top: 0.5rem;
-            width: 1rem;
-            height: 1rem;
-            background: var(--accent);
-            border: 3px solid var(--bg);
-            border-radius: 50%;
-        }
-
-        .timeline-period {
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 0.85rem;
+        .tags li {
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            background: var(--accent-bg);
             color: var(--accent);
-            margin-bottom: 0.5rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
+            font-size: 0.75rem;
+            font-weight: 500;
+            line-height: 1.25rem;
         }
 
-        .timeline-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.75rem;
-            font-weight: 700;
-            color: var(--primary);
-            margin-bottom: 0.5rem;
+        .cv-link { font-weight: 600; color: var(--text-strong); }
+
+        .cv-link:hover { color: var(--accent); }
+
+        footer { max-width: 28rem; font-size: 0.875rem; color: var(--text-muted); }
+
+        @media (min-width: 640px) {
+            .item { grid-template-columns: 2fr 6fr; gap: 2rem; }
         }
 
-        .timeline-company {
-            font-size: 1.125rem;
-            color: var(--text-light);
-            margin-bottom: 1rem;
-        }
+        @media (min-width: 1024px) {
+            .layout { display: flex; justify-content: space-between; gap: 1rem; padding: 0 3rem; }
 
-        .timeline-description {
-            color: var(--text);
-            line-height: 1.8;
-        }
-
-        /* Contact Section */
-        .contact-content {
-            text-align: center;
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        .contact-content p {
-            font-size: 1.25rem;
-            color: var(--text-light);
-            margin-bottom: 3rem;
-            line-height: 1.8;
-        }
-
-        .contact-links {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            flex-wrap: wrap;
-        }
-
-        .contact-link {
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 1rem;
-            color: var(--text);
-            text-decoration: none;
-            padding: 1rem 2rem;
-            border: 2px solid var(--border);
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-        }
-
-        .contact-link:hover {
-            border-color: var(--accent);
-            color: var(--accent);
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(255, 107, 53, 0.15);
-        }
-
-        /* Footer */
-        footer {
-            background: var(--primary);
-            color: white;
-            padding: 3rem 0;
-            text-align: center;
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 0.85rem;
-        }
-
-        footer a {
-            color: var(--accent);
-            text-decoration: none;
-        }
-
-        /* Responsive */
-        @media (max-width: 968px) {
-            .about-grid {
-                grid-template-columns: 1fr;
-                gap: 3rem;
-            }
-
-            .project-card {
-                grid-template-columns: 1fr;
-            }
-
-            .hero-stats {
-                gap: 2rem;
-            }
-
-            .cta-buttons {
+            header {
+                position: sticky;
+                top: 0;
+                display: flex;
                 flex-direction: column;
+                justify-content: space-between;
+                width: 48%;
+                max-height: 100vh;
+                padding: 6rem 0;
             }
 
-            .btn {
-                text-align: center;
+            h1 { font-size: 3rem; }
+
+            nav { display: block; }
+
+            main { width: 52%; padding: 6rem 0; }
+
+            .section-title {
+                position: absolute;
+                width: 1px;
+                height: 1px;
+                overflow: hidden;
+                clip: rect(0 0 0 0);
             }
 
-            section {
-                padding: 5rem 0;
-            }
+            section { margin-bottom: 9rem; }
         }
 
-        @media (max-width: 640px) {
-            .hero-stats {
-                flex-direction: column;
-                gap: 1.5rem;
-            }
-
-            .contact-links {
-                flex-direction: column;
-            }
-
-            .timeline {
-                padding-left: 2rem;
-            }
-
-            .timeline-item::before {
-                left: -2.5rem;
-            }
-        }
-
-        /* Scroll animations */
-        .fade-in-section {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-        }
-
-        .fade-in-section.visible {
-            opacity: 1;
-            transform: translateY(0);
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+            * { transition: none !important; }
         }
     </style>
 </head>
 <body>
-    <div class="grain-overlay"></div>
+    <div class="spotlight" id="spotlight"></div>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <div class="hero-label">Data Scientist & AI Engineer</div>
-                <h1 class="hero-title">Husam<br>Mekhallalati</h1>
-                <p class="hero-subtitle">Transforming complex data into actionable insights through advanced analytics, machine learning, and intelligent systems.</p>
-
-                <div class="hero-stats">
-                    <div class="stat">
-                        <span class="stat-number">3+</span>
-                        <span class="stat-label">Years Experience</span>
-                    </div>
-                    <div class="stat">
-                        <span class="stat-number">15+</span>
-                        <span class="stat-label">Projects Delivered</span>
-                    </div>
-                    <div class="stat">
-                        <span class="stat-number">M.Sc.</span>
-                        <span class="stat-label">Applied Data Science</span>
-                    </div>
-                </div>
-
-                <div class="cta-buttons">
-                    <a href="#projects" class="btn btn-primary">View Projects</a>
-                    <a href="#contact" class="btn btn-secondary">Get in Touch</a>
-                </div>
+    <div class="layout">
+        <header>
+            <div>
+                <h1>Husam Mekhallalati</h1>
+                <p class="role">AI Engineer at Hawaz</p>
+                <p class="tagline">I build LLM systems for Arabic and English documents in Riyadh.</p>
+                <nav aria-label="In-page">
+                    <ul>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#experience">Experience</a></li>
+                        <li><a href="#projects">Projects</a></li>
+                    </ul>
+                </nav>
             </div>
-        </div>
-    </section>
+            <ul class="socials">
+                <li><a href="https://github.com/Hus-Mek" target="_blank" rel="noopener">GitHub</a></li>
+                <li><a href="https://www.linkedin.com/in/husam-mekhallalati-6a8718226/" target="_blank" rel="noopener">LinkedIn</a></li>
+                <li><a href="mailto:husam2200@gmail.com">Email</a></li>
+                <li><a href="tel:+966511406424">+966 51 140 6424</a></li>
+            </ul>
+        </header>
 
-    <!-- About Section -->
-    <section id="about">
-        <div class="container">
-            <div class="section-header fade-in-section">
-                <div class="section-label">About Me</div>
-                <h2 class="section-title">Building Intelligence<br>Through Data</h2>
-            </div>
+        <main>
+            <section id="about" class="about">
+                <h2 class="section-title">About</h2>
+                <p>I'm an AI engineer and consultant at <strong>Hawaz</strong> in Riyadh. Most of my work turns consulting processes for Saudi government clients into software: tools that read long Arabic documents, score them against official criteria, and show the evidence behind every result.</p>
+                <p>I build systems that are honest about what they know. Code computes the numbers, the model does the judging, and a finding it can't quote from the source doesn't make it into the report. Most of it runs on local GPUs, so client documents stay on our own hardware.</p>
+                <p>Before Riyadh I lived in the Netherlands, where I completed an <strong>M.Sc. in Applied Data Science</strong> at Utrecht University, wrote my thesis on satellite imagery at Readar, analyzed logistics data at Coty, and freelanced on data pipelines and scrapers. I'm British and Irish, and a native speaker of English and Arabic.</p>
+            </section>
 
-            <div class="about-grid fade-in-section">
-                <div class="about-text">
-                    <p>I'm an <span class="highlight">Irish/British Data Scientist</span> with a Master's degree in Applied Data Science from Utrecht University, specializing in building end-to-end analytics pipelines and AI-powered applications.</p>
-
-                    <p>My expertise spans <span class="highlight">NLP, transformer architectures, RAG systems, and deep learning</span>, with hands-on experience in logistics analytics, remote sensing, geospatial intelligence, and web scraping at scale.</p>
-
-                    <p>I'm passionate about leveraging data to solve real-world problems, from sentiment analysis of conflict narratives to secure educational chatbots and comprehensive project management platforms.</p>
-                </div>
-
-                <div class="skills-grid">
-                    <div class="skill-category">
-                        <h3>Languages & Core</h3>
-                        <div class="skill-tags">
-                            <span class="skill-tag">Python</span>
-                            <span class="skill-tag">SQL</span>
-                            <span class="skill-tag">R</span>
-                            <span class="skill-tag">Java</span>
-                            <span class="skill-tag">MATLAB</span>
+            <section id="experience">
+                <h2 class="section-title">Experience</h2>
+                <ol class="items">
+                    <li class="item">
+                        <div class="item-date">2026 — Present</div>
+                        <div>
+                            <h3>AI Engineer &amp; Consultant · <span class="org">Hawaz</span></h3>
+                            <p>Build production LLM tools for government-sector consulting: an automated DGA maturity assessor, a local document review agent with Saudi PII anonymization, and the Rasid tender-intelligence platform. Also shipped the bilingual LEAP 2026 booth site.</p>
+                            <ul class="tags"><li>Python</li><li>LangGraph</li><li>vLLM</li><li>Ollama</li><li>Docker</li><li>Cloudflare</li></ul>
                         </div>
-                    </div>
-
-                    <div class="skill-category">
-                        <h3>ML & AI</h3>
-                        <div class="skill-tags">
-                            <span class="skill-tag">TensorFlow</span>
-                            <span class="skill-tag">Scikit-learn</span>
-                            <span class="skill-tag">Transformers</span>
-                            <span class="skill-tag">RAG Systems</span>
-                            <span class="skill-tag">NLP</span>
+                    </li>
+                    <li class="item">
+                        <div class="item-date">2022 — 2026</div>
+                        <div>
+                            <h3>Freelance Programmer &amp; Analyst · <span class="org">Mek Tech Services</span></h3>
+                            <p>Data pipelines and lifecycle evaluation for a vertical-farming ML product, scrapers for EU trade registries, and a RAG-based tool that tracks sentiment in think-tank publications over time.</p>
+                            <ul class="tags"><li>ETL</li><li>Selenium</li><li>RAG</li><li>ChromaDB</li></ul>
                         </div>
-                    </div>
-
-                    <div class="skill-category">
-                        <h3>Data & Analytics</h3>
-                        <div class="skill-tags">
-                            <span class="skill-tag">Pandas</span>
-                            <span class="skill-tag">NumPy</span>
-                            <span class="skill-tag">Power BI</span>
-                            <span class="skill-tag">ChromaDB</span>
-                            <span class="skill-tag">PostgreSQL</span>
+                    </li>
+                    <li class="item">
+                        <div class="item-date">2025</div>
+                        <div>
+                            <h3>M.Sc. Thesis Researcher · <span class="org">Readar</span></h3>
+                            <p>Developed a method to normalize colour differences across multi-sensor satellite and aerial imagery, preparing the data for deep-learning super-resolution.</p>
+                            <ul class="tags"><li>Computer Vision</li><li>RasterIO</li><li>QGIS</li><li>TensorFlow</li></ul>
                         </div>
-                    </div>
-
-                    <div class="skill-category">
-                        <h3>Tools & Frameworks</h3>
-                        <div class="skill-tags">
-                            <span class="skill-tag">FastAPI</span>
-                            <span class="skill-tag">Flask</span>
-                            <span class="skill-tag">Streamlit</span>
-                            <span class="skill-tag">Selenium</span>
-                            <span class="skill-tag">QGIS</span>
+                    </li>
+                    <li class="item">
+                        <div class="item-date">2023 — 2024</div>
+                        <div>
+                            <h3>Logistics Finance Consultant · <span class="org">Coty</span></h3>
+                            <p>Analyzed SAP logistics data and built cross-departmental Power BI dashboards for KPI monitoring and launch planning.</p>
+                            <ul class="tags"><li>Power BI</li><li>Python</li><li>SAP</li></ul>
                         </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Projects Section -->
-    <section id="projects" style="background: var(--bg);">
-        <div class="container">
-            <div class="section-header fade-in-section">
-                <div class="section-label">Featured Work</div>
-                <h2 class="section-title">Projects & Solutions</h2>
-            </div>
-
-            <div class="projects-grid">
-                <!-- Project 1: University RAG Chatbot -->
-                <div class="project-card fade-in-section">
-                    <div class="project-image">
-                        <div class="project-icon">🤖</div>
-                    </div>
-                    <div class="project-content">
-                        <div class="project-meta">AI • Security • Education</div>
-                        <h3 class="project-title">Secure University RAG Chatbot</h3>
-                        <p class="project-description">
-                            Built a comprehensive RAG chatbot system for university data with multi-level access control (public, student, faculty). Features FastAPI backend, role-based security, audit logging, and FERPA compliance.
-                        </p>
-                        <div class="project-tech">
-                            <span class="tech-badge">FastAPI</span>
-                            <span class="tech-badge">ChromaDB</span>
-                            <span class="tech-badge">Groq API</span>
-                            <span class="tech-badge">JWT Auth</span>
-                            <span class="tech-badge">Streamlit</span>
+                    </li>
+                    <li class="item">
+                        <div class="item-date">2021</div>
+                        <div>
+                            <h3>Flutter Developer · <span class="org">Fair Online BV</span></h3>
+                            <p>Built UI components and Firebase-backed booking workflows.</p>
+                            <ul class="tags"><li>Flutter</li><li>Firebase</li></ul>
                         </div>
-                    </div>
-                </div>
-
-                <!-- Project 2: Syrian Conflict Analysis -->
-                <div class="project-card fade-in-section">
-                    <div class="project-image" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
-                        <div class="project-icon">📊</div>
-                    </div>
-                    <div class="project-content">
-                        <div class="project-meta">NLP • Sentiment Analysis • Geopolitics</div>
-                        <h3 class="project-title">Syrian Dialogue Center Analysis Platform</h3>
-                        <p class="project-description">
-                            Developed sentiment analysis platform tracking Syrian conflict narratives. Scraped and analyzed Arabic and English documents, using Groq with Qwen models for analysis and ChromaDB for efficient retrieval.
-                        </p>
-                        <div class="project-tech">
-                            <span class="tech-badge">NLP</span>
-                            <span class="tech-badge">Web Scraping</span>
-                            <span class="tech-badge">Qwen LLM</span>
-                            <span class="tech-badge">ChromaDB</span>
-                            <span class="tech-badge">Sentiment Analysis</span>
+                    </li>
+                    <li class="item">
+                        <div class="item-date">Education</div>
+                        <div>
+                            <h3>M.Sc. Applied Data Science · <span class="org">Utrecht University, 2025</span></h3>
+                            <h3>B.Sc. Data Science and AI · <span class="org">Maastricht University, 2024</span></h3>
                         </div>
-                    </div>
-                </div>
+                    </li>
+                </ol>
+                <a class="cv-link" href="mailto:husam2200@gmail.com?subject=CV%20request">Ask me for my full CV →</a>
+            </section>
 
-                <!-- Project 3: Service Broker Platform -->
-                <div class="project-card fade-in-section">
-                    <div class="project-image" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
-                        <div class="project-icon">🌐</div>
-                    </div>
-                    <div class="project-content">
-                        <div class="project-meta">Full-Stack • API • Cloud Infrastructure</div>
-                        <h3 class="project-title">BIGss Service Broker Platform</h3>
-                        <p class="project-description">
-                            Flask-based REST API connecting foreign companies with Saudi service providers. Handles complex deployment with PostgreSQL backend on Railway and React frontend on Vercel, ensuring data residency compliance.
-                        </p>
-                        <div class="project-tech">
-                            <span class="tech-badge">Flask</span>
-                            <span class="tech-badge">PostgreSQL</span>
-                            <span class="tech-badge">React</span>
-                            <span class="tech-badge">Railway</span>
-                            <span class="tech-badge">REST API</span>
+            <section id="projects">
+                <h2 class="section-title">Projects</h2>
+                <ul class="items">
+                    <li class="item">
+                        <div class="item-date">Hawaz</div>
+                        <div>
+                            <h3>Local Document Review Agent</h3>
+                            <p>Reads whole Arabic and English documents on an NVIDIA DGX Spark, anonymizes Saudi PII with reversible pseudonyms, runs deterministic cross-checks on dates and figures, and drops any finding whose quote it can't find in the source. I benchmarked 12 Arabic and English NER models to choose the anonymizer.</p>
+                            <ul class="tags"><li>LangGraph</li><li>Chainlit</li><li>Ollama</li><li>GLiNER</li></ul>
                         </div>
-                    </div>
-                </div>
-
-                <!-- Project 5: Satellite Image Analytics -->
-                <div class="project-card fade-in-section">
-                    <div class="project-image" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);">
-                        <div class="project-icon">🛰️</div>
-                    </div>
-                    <div class="project-content">
-                        <div class="project-meta">Deep Learning • Geospatial • Computer Vision</div>
-                        <h3 class="project-title">Multi-Source Satellite Image Normalization</h3>
-                        <p class="project-description">
-                            Master thesis at Readar focused on deep learning for satellite imagery. Developed novel method to normalize color differences across multi-sensor data for super-resolution transformation.
-                        </p>
-                        <div class="project-tech">
-                            <span class="tech-badge">Deep Learning</span>
-                            <span class="tech-badge">Computer Vision</span>
-                            <span class="tech-badge">RasterIO</span>
-                            <span class="tech-badge">QGIS</span>
-                            <span class="tech-badge">Remote Sensing</span>
+                    </li>
+                    <li class="item">
+                        <div class="item-date">Hawaz</div>
+                        <div>
+                            <h3>Digital Experience Maturity Assessor</h3>
+                            <p>Automates assessment against the DGA Digital Experience Maturity Index. Code computes every metric; an LLM judge assigns calibrated maturity bands, scored against official DGA results.</p>
+                            <ul class="tags"><li>Python</li><li>LLM-as-judge</li><li>PyMuPDF</li><li>pytest</li></ul>
                         </div>
-                    </div>
-                </div>
-
-                <!-- Project 6: Agriculture ML -->
-                <div class="project-card fade-in-section">
-                    <div class="project-image" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);">
-                        <div class="project-icon">🌱</div>
-                    </div>
-                    <div class="project-content">
-                        <div class="project-meta">Machine Learning • AgTech • Analytics</div>
-                        <h3 class="project-title">Vertical Farming ML Pipeline</h3>
-                        <p class="project-description">
-                            Designed product data pipelines and lifecycle evaluation for agriculture tech. Built ETL tools for ML-driven vertical farming, performed business feasibility analysis, and delivered actionable reporting.
-                        </p>
-                        <div class="project-tech">
-                            <span class="tech-badge">Machine Learning</span>
-                            <span class="tech-badge">ETL</span>
-                            <span class="tech-badge">Data Pipelines</span>
-                            <span class="tech-badge">Business Analytics</span>
+                    </li>
+                    <li class="item">
+                        <div class="item-date">Hawaz</div>
+                        <div>
+                            <h3>Rasid Tender Intelligence</h3>
+                            <p>Scrapes Etimad and international tender portals, extracts evaluation criteria, and scores each opportunity with an explained rationale. Shipped through 90+ reviewed pull requests.</p>
+                            <ul class="tags"><li>Scraping</li><li>LLM extraction</li><li>CI/CD</li></ul>
                         </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+                    </li>
+                    <li class="item">
+                        <div class="item-date">Freelance</div>
+                        <div>
+                            <h3>Syrian Dialogue Center Analysis Platform</h3>
+                            <p>Scraped Arabic and English documents and tracked how conflict narratives shifted over time, using Qwen models for analysis and ChromaDB for retrieval.</p>
+                            <ul class="tags"><li>NLP</li><li>Qwen</li><li>ChromaDB</li></ul>
+                        </div>
+                    </li>
+                    <li class="item">
+                        <div class="item-date">Freelance</div>
+                        <div>
+                            <h3>Secure University RAG Chatbot</h3>
+                            <p>A RAG chatbot over university data with role-based access for the public, students, and faculty, plus audit logging.</p>
+                            <ul class="tags"><li>FastAPI</li><li>ChromaDB</li><li>JWT</li><li>Streamlit</li></ul>
+                        </div>
+                    </li>
+                    <li class="item">
+                        <div class="item-date">Freelance</div>
+                        <div>
+                            <h3>BIGss Service Broker Platform</h3>
+                            <p>A Flask REST API that connects foreign companies with Saudi service providers, with PostgreSQL on Railway and a React frontend on Vercel.</p>
+                            <ul class="tags"><li>Flask</li><li>PostgreSQL</li><li>React</li></ul>
+                        </div>
+                    </li>
+                </ul>
+            </section>
 
-    <!-- Experience Section -->
-    <section id="experience">
-        <div class="container">
-            <div class="section-header fade-in-section">
-                <div class="section-label">Career Journey</div>
-                <h2 class="section-title">Experience & Education</h2>
-            </div>
-
-            <div class="timeline fade-in-section">
-                <div class="timeline-item">
-                    <div class="timeline-period">Sep 2024 — Aug 2025</div>
-                    <h3 class="timeline-title">M.Sc. Applied Data Science</h3>
-                    <div class="timeline-company">University of Utrecht, Netherlands</div>
-                    <p class="timeline-description">
-                        Engaged in advanced courses exploring NLP, transformer architectures, data governance (including GMP/GDP foundations), and causal inference. Emphasis on secure, compliant data usage and robust analytical systems for healthcare and public policy.
-                    </p>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="timeline-period">Feb 2025 — Aug 2025</div>
-                    <h3 class="timeline-title">Master Thesis Researcher</h3>
-                    <div class="timeline-company">Readar, Utrecht</div>
-                    <p class="timeline-description">
-                        Focused on image analytics and deep learning, processing multi-source satellite and aerial imagery. Developed innovative method to normalize color differences across multi-sensor data for super-resolution transformation.
-                    </p>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="timeline-period">Feb 2022 — Present</div>
-                    <h3 class="timeline-title">Freelance Programmer/Analyst/Consultant</h3>
-                    <div class="timeline-company">Mek Tech Services, Remote</div>
-                    <p class="timeline-description">
-                        Managing multi-phase projects including ML pipelines for vertical farming, EU trade registry web scraping, and think-tank analysis tools. Designed RAG-based sentiment analysis systems and delivered polished web applications. Specialized in ETL tools, business feasibility analysis, and actionable reporting.
-                    </p>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="timeline-period">Aug 2023 — Jan 2024</div>
-                    <h3 class="timeline-title">Logistics Finance Consultant</h3>
-                    <div class="timeline-company">Coty Amsterdam, Netherlands</div>
-                    <p class="timeline-description">
-                        Analyzed SAP-based logistics datasets using Power BI and Python. Contributed to product lifecycle activities, performance monitoring, and cross-departmental dashboard design. Coordinated KPI monitoring with internal and external stakeholders.
-                    </p>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="timeline-period">Sep 2019 — Aug 2024</div>
-                    <h3 class="timeline-title">B.Sc. Data Science & AI</h3>
-                    <div class="timeline-company">Maastricht University, Netherlands</div>
-                    <p class="timeline-description">
-                        Studied software engineering, database design, statistical inference, and AI theory. Completed minor in Entrepreneurship focusing on business lifecycle, MVP validation, and product management. Engaged in full product launch cycle projects.
-                    </p>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="timeline-period">Jun 2021 — Sep 2021</div>
-                    <h3 class="timeline-title">Flutter Developer</h3>
-                    <div class="timeline-company">Fair Online BV, Venray</div>
-                    <p class="timeline-description">
-                        Developed UI components and Firebase-backed booking workflows. Demonstrated product iteration and feedback integration from design to deployment.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" style="background: var(--bg);">
-        <div class="container">
-            <div class="section-header fade-in-section">
-                <div class="section-label">Get in Touch</div>
-                <h2 class="section-title">Let's Work Together</h2>
-            </div>
-
-            <div class="contact-content fade-in-section">
-                <p>
-                    I'm always interested in hearing about new projects and opportunities. Whether you need data analytics, AI solutions, or consulting services, let's connect.
-                </p>
-
-                <div class="contact-links">
-                    <a href="mailto:husam2200@gmail.com" class="contact-link">
-                        <span>📧</span>
-                        husam2200@gmail.com
-                    </a>
-                    <a href="tel:+31639015076" class="contact-link">
-                        <span>📱</span>
-                        +31 6 3901 5076
-                    </a>
-                    <a href="https://github.com/Hus-Mek" target="_blank" class="contact-link">
-                        <span>💻</span>
-                        GitHub
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <p>© 2025 Husam Mekhallalati. Data Scientist & AI Engineer.</p>
-            <p style="margin-top: 0.5rem; opacity: 0.7;">Built with passion for intelligent systems.</p>
-        </div>
-    </footer>
+            <footer>
+                <p>Layout loosely based on Brittany Chiang's site. Hand-written HTML and CSS, hosted on GitHub Pages.</p>
+            </footer>
+        </main>
+    </div>
 
     <script>
-        // Intersection Observer for scroll animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
+        const spotlight = document.getElementById('spotlight');
+        if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            window.addEventListener('pointermove', (e) => {
+                spotlight.style.background =
+                    `radial-gradient(600px at ${e.clientX}px ${e.clientY}px, rgba(29, 78, 216, 0.15), transparent 80%)`;
+            });
+        }
 
+        const links = document.querySelectorAll('nav a');
         const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
+            entries.forEach((entry) => {
+                if (!entry.isIntersecting) return;
+                links.forEach((a) => a.classList.toggle('active', a.getAttribute('href') === `#${entry.target.id}`));
             });
-        }, observerOptions);
-
-        document.querySelectorAll('.fade-in-section').forEach(el => {
-            observer.observe(el);
-        });
-
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
+        }, { rootMargin: '-40% 0px -55% 0px' });
+        document.querySelectorAll('main section').forEach((s) => observer.observe(s));
     </script>
 </body>
 </html>
