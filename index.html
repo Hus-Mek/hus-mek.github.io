@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Husam Mekhallalati - Data Science & AI</title>
+    <title>Husam Mekhallalati - AI Engineer</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=IBM+Plex+Mono:wght@300;400;500&family=Manrope:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -582,13 +582,13 @@
     <section class="hero">
         <div class="container">
             <div class="hero-content">
-                <div class="hero-label">Data Scientist & AI Engineer</div>
+                <div class="hero-label">AI Engineer · LLM Systems & Arabic NLP</div>
                 <h1 class="hero-title">Husam<br>Mekhallalati</h1>
-                <p class="hero-subtitle">Transforming complex data into actionable insights through advanced analytics, machine learning, and intelligent systems.</p>
+                <p class="hero-subtitle">Building production LLM systems for Arabic and English documents: evidence-grounded assessment, PII anonymization, and tender intelligence, running on local GPUs.</p>
 
                 <div class="hero-stats">
                     <div class="stat">
-                        <span class="stat-number">3+</span>
+                        <span class="stat-number">4+</span>
                         <span class="stat-label">Years Experience</span>
                     </div>
                     <div class="stat">
@@ -619,14 +619,26 @@
 
             <div class="about-grid fade-in-section">
                 <div class="about-text">
-                    <p>I'm an <span class="highlight">Irish/British Data Scientist</span> with a Master's degree in Applied Data Science from Utrecht University, specializing in building end-to-end analytics pipelines and AI-powered applications.</p>
+                    <p>I'm an <span class="highlight">Irish/British AI Engineer</span> based in Riyadh, working as an AI engineer and consultant at Hawaz. I hold a Master's degree in Applied Data Science from Utrecht University.</p>
 
-                    <p>My expertise spans <span class="highlight">NLP, transformer architectures, RAG systems, and deep learning</span>, with hands-on experience in logistics analytics, remote sensing, geospatial intelligence, and web scraping at scale.</p>
+                    <p>I build <span class="highlight">LLM systems, Arabic NLP, and RAG pipelines</span> for Saudi government-sector consulting, with earlier hands-on experience in logistics analytics, remote sensing, and web scraping at scale.</p>
 
                     <p>I'm passionate about leveraging data to solve real-world problems, from sentiment analysis of conflict narratives to secure educational chatbots and comprehensive project management platforms.</p>
                 </div>
 
                 <div class="skills-grid">
+                    <div class="skill-category">
+                        <h3>LLM & GenAI</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">LangGraph</span>
+                            <span class="skill-tag">vLLM</span>
+                            <span class="skill-tag">Ollama</span>
+                            <span class="skill-tag">LLM-as-Judge</span>
+                            <span class="skill-tag">Arabic NER</span>
+                            <span class="skill-tag">Docker</span>
+                        </div>
+                    </div>
+
                     <div class="skill-category">
                         <h3>Languages & Core</h3>
                         <div class="skill-tags">
@@ -684,6 +696,64 @@
             </div>
 
             <div class="projects-grid">
+                <div class="project-card fade-in-section">
+                    <div class="project-image" style="background: linear-gradient(135deg, #1f3a5f 0%, #4a7bb7 100%);">
+                        <div class="project-icon">📄</div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-meta">LLM • Arabic NLP • Privacy</div>
+                        <h3 class="project-title">Local Document Review Agent</h3>
+                        <p class="project-description">
+                            Reviews whole Arabic and English documents on an NVIDIA DGX Spark. Anonymizes Saudi PII with typed, reversible pseudonyms, runs deterministic cross-checks (Hijri and Gregorian dates, conflicting figures), and drops any finding whose quote it can't verify in the source. Backed by a benchmark of 12 Arabic and English NER models.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-badge">LangGraph</span>
+                            <span class="tech-badge">Chainlit</span>
+                            <span class="tech-badge">Ollama</span>
+                            <span class="tech-badge">vLLM</span>
+                            <span class="tech-badge">GLiNER</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card fade-in-section">
+                    <div class="project-image" style="background: linear-gradient(135deg, #0f766e 0%, #34d399 100%);">
+                        <div class="project-icon">🏛️</div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-meta">LLM Evaluation • GovTech</div>
+                        <h3 class="project-title">Digital Experience Maturity Assessor</h3>
+                        <p class="project-description">
+                            Automates assessment against the DGA Digital Experience Maturity Index. Deterministic code computes every metric; an LLM judge assigns calibrated maturity bands, scored against official DGA results.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-badge">Python</span>
+                            <span class="tech-badge">LLM-as-Judge</span>
+                            <span class="tech-badge">PyMuPDF</span>
+                            <span class="tech-badge">pytest</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card fade-in-section">
+                    <div class="project-image" style="background: linear-gradient(135deg, #7c2d12 0%, #f97316 100%);">
+                        <div class="project-icon">📑</div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-meta">Scraping • LLM Extraction • Scoring</div>
+                        <h3 class="project-title">Rasid Tender Intelligence</h3>
+                        <p class="project-description">
+                            Scrapes Etimad and international tender portals (TED, UNGM), extracts evaluation criteria, and scores each opportunity with an explained rationale. Shipped through 90+ reviewed pull requests with CI/CD to production.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-badge">Python</span>
+                            <span class="tech-badge">Web Scraping</span>
+                            <span class="tech-badge">LLM Extraction</span>
+                            <span class="tech-badge">CI/CD</span>
+                        </div>
+                    </div>
+                </div>
+
                 <!-- Project 1: University RAG Chatbot -->
                 <div class="project-card fade-in-section">
                     <div class="project-image">
@@ -801,6 +871,15 @@
 
             <div class="timeline fade-in-section">
                 <div class="timeline-item">
+                    <div class="timeline-period">Jun 2026 — Present</div>
+                    <h3 class="timeline-title">AI Engineer & Consultant</h3>
+                    <div class="timeline-company">Hawaz, Riyadh, Saudi Arabia</div>
+                    <p class="timeline-description">
+                        Build production LLM tools for government-sector consulting: an automated DGA maturity assessor, a local document review agent with Saudi PII anonymization, and the Rasid tender-intelligence platform. Also shipped the bilingual LEAP 2026 booth site on Cloudflare.
+                    </p>
+                </div>
+
+                <div class="timeline-item">
                     <div class="timeline-period">Sep 2024 — Aug 2025</div>
                     <h3 class="timeline-title">M.Sc. Applied Data Science</h3>
                     <div class="timeline-company">University of Utrecht, Netherlands</div>
@@ -819,11 +898,11 @@
                 </div>
 
                 <div class="timeline-item">
-                    <div class="timeline-period">Feb 2022 — Present</div>
+                    <div class="timeline-period">Feb 2022 — May 2026</div>
                     <h3 class="timeline-title">Freelance Programmer/Analyst/Consultant</h3>
                     <div class="timeline-company">Mek Tech Services, Remote</div>
                     <p class="timeline-description">
-                        Managing multi-phase projects including ML pipelines for vertical farming, EU trade registry web scraping, and think-tank analysis tools. Designed RAG-based sentiment analysis systems and delivered polished web applications. Specialized in ETL tools, business feasibility analysis, and actionable reporting.
+                        Managed multi-phase projects including ML pipelines for vertical farming, EU trade registry web scraping, and think-tank analysis tools. Designed RAG-based sentiment analysis systems and delivered polished web applications. Specialized in ETL tools, business feasibility analysis, and actionable reporting.
                     </p>
                 </div>
 
@@ -875,13 +954,17 @@
                         <span>📧</span>
                         husam2200@gmail.com
                     </a>
-                    <a href="tel:+31639015076" class="contact-link">
+                    <a href="tel:+966511406424" class="contact-link">
                         <span>📱</span>
-                        +31 6 3901 5076
+                        +966 51 140 6424
                     </a>
                     <a href="https://github.com/Hus-Mek" target="_blank" class="contact-link">
                         <span>💻</span>
                         GitHub
+                    </a>
+                    <a href="https://www.linkedin.com/in/husam-mekhallalati-6a8718226/" target="_blank" class="contact-link">
+                        <span>💼</span>
+                        LinkedIn
                     </a>
                 </div>
             </div>
@@ -891,7 +974,7 @@
     <!-- Footer -->
     <footer>
         <div class="container">
-            <p>© 2025 Husam Mekhallalati. Data Scientist & AI Engineer.</p>
+            <p>© 2026 Husam Mekhallalati. AI Engineer.</p>
             <p style="margin-top: 0.5rem; opacity: 0.7;">Built with passion for intelligent systems.</p>
         </div>
     </footer>
